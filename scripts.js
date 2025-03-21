@@ -38,7 +38,7 @@ function getClickedValues() {
 
 }
 
-const buttons = document.querySelectorAll(".calculator > div > button")
+const buttons = document.querySelectorAll(".buttons")
 buttons.forEach((button) => {
     button.addEventListener("click", (e) => {
         let buttonValue = e.target.value
