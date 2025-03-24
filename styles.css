@@ -47,7 +47,7 @@ p {
     margin: 16px;
 }
 
-.buttons {
+.keyboard {
     display: grid;
     gap: 10px;
 }
@@ -88,7 +88,7 @@ button:hover {
     background-color: #b3b3b3;
 }
 
-.buttons {
+.keyboard {
     grid-template-columns: repeat(4, 1fr);
 }
 
