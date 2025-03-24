@@ -61,6 +61,9 @@ document.addEventListener("DOMContentLoaded", () => {
             } else if (value === "%") {
                 currentInput = (parseFloat(currentInput)/100).toString()
                 updateDisplay() 
+            } else if (value === "del") {
+                currentInput = currentInput.slice(0, -1);
+                updateDisplay()
             }
         })
     })

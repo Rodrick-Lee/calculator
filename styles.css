@@ -77,14 +77,16 @@ button:hover {
 
 .clear,
 .negative,
-.percentage {
+.percentage,
+.delete {
     background-color: #a6a6a6;
     color: #000;
 }
 
 .clear:hover,
 .negative:hover,
-.percentage:hover {
+.percentage:hover,
+.delete:hover {
     background-color: #b3b3b3;
 }
 
@@ -93,5 +95,5 @@ button:hover {
 }
 
 .zero {
-    grid-column: span 2;
+    grid-column: span 1;
 }
