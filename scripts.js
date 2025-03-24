@@ -21,18 +21,29 @@ document.addEventListener("DOMContentLoaded", () => {
                 } else {
                     if(currentInput.split("").includes(".") && value === "."){
                         return
-                    }
-                    currentInput += value;
+                    } else if (currentInput.length < 16) {
+                        currentInput += value;
+                    } 
+                    
                 }
                 updateDisplay();
 
             } else if (["+", "-", "/", "*"].includes(value)) {
-                if (operation !== null) operate()
+                if(currentInput === "0" && previousInput ==="") return
+
+                if (operation !== null && !resetDisplay){
+                    operation = value
+                    return
+                }
+                if(previousInput !== "" && !resetDisplay) {
+                    operate()}
                 previousInput = currentInput
                 operation = value
                 resetDisplay = true
+
+
             } else if (value === "=") {
-                if (operation !== null) {
+                if (operation !== null && !resetDisplay) {
                     operate()
                     operation = null;
                     resetDisplay = true;
