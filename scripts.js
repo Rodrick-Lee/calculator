@@ -14,12 +14,14 @@ document.addEventListener("DOMContentLoaded", () => {
     buttons.forEach((button) => {
         button.addEventListener("click", () => {
             let value = button.value
-            console.log(value)
             if (!isNaN(value) || value === ".") {
                 if (currentInput === "0" || resetDisplay) {
                     currentInput = value
                     resetDisplay = false
                 } else {
+                    if(currentInput.split("").includes(".") && value === "."){
+                        return
+                    }
                     currentInput += value;
                 }
                 updateDisplay();
@@ -62,18 +64,18 @@ document.addEventListener("DOMContentLoaded", () => {
         return a * b
     }
     function divide(a, b) {
+        if(b === 0){
+            return "ERROR"
+        }
         return a / b
     }
 
 
     function operate() {
-        console.log("entro")
         let firstNumber = parseFloat(previousInput)
         let secondNumber = parseFloat(currentInput)
         let result = 0;
-        console.log(firstNumber)
-        console.log(secondNumber)
-        console.log(operation)
+
         if (isNaN(firstNumber)) return
         switch (operation) {
             case "+":
@@ -91,7 +93,11 @@ document.addEventListener("DOMContentLoaded", () => {
             default:
                 return;
         }
-        currentInput = result.toString();
+        if (Number.isInteger(result)) {
+            currentInput = result.toString();
+        } else {
+            currentInput = parseFloat(result.toFixed(15)).toString();
+        }
         updateDisplay()
     }
 })
