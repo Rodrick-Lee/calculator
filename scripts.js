@@ -1,7 +1,7 @@
 document.addEventListener("DOMContentLoaded", () => {
     const display = document.querySelector('.display');
     const buttons = document.querySelectorAll("button")
-    let currentInput = '0';
+    let currentInput = '';
     let previousInput = '';
     let operation = null;
     let resetDisplay = false;
@@ -19,24 +19,26 @@ document.addEventListener("DOMContentLoaded", () => {
                     currentInput = value
                     resetDisplay = false
                 } else {
-                    if(currentInput.split("").includes(".") && value === "."){
+                    if (currentInput.split("").includes(".") && value === ".") {
                         return
                     } else if (currentInput.length < 16) {
                         currentInput += value;
-                    } 
-                    
+                    }
+
                 }
                 updateDisplay();
 
             } else if (["+", "-", "/", "*"].includes(value)) {
-                if(currentInput === "0" && previousInput ==="") return
+                if (currentInput === "" && previousInput === "") return
 
-                if (operation !== null && !resetDisplay){
+                if (operation !== null && !resetDisplay) {
                     operation = value
                     return
                 }
-                if(previousInput !== "" && !resetDisplay) {
-                    operate()}
+                if (previousInput !== "" && !resetDisplay) {
+                    operate()
+                    // operation = value
+                }
                 previousInput = currentInput
                 operation = value
                 resetDisplay = true
@@ -49,18 +51,18 @@ document.addEventListener("DOMContentLoaded", () => {
                     resetDisplay = true;
                 }
             } else if (value == "ac") {
-                currentInput = '0';
+                currentInput = '';
                 previousInput = '';
                 operation = null;
                 updateDisplay()
 
             } else if (value === "+/-") {
-                currentInput = (parseFloat(currentInput)*-1).toString()
-                updateDisplay() 
+                currentInput = (parseFloat(currentInput) * -1).toString()
+                updateDisplay()
 
             } else if (value === "%") {
-                currentInput = (parseFloat(currentInput)/100).toString()
-                updateDisplay() 
+                currentInput = (parseFloat(currentInput) / 100).toString()
+                updateDisplay()
             } else if (value === "del") {
                 currentInput = currentInput.slice(0, -1);
                 updateDisplay()
@@ -78,7 +80,7 @@ document.addEventListener("DOMContentLoaded", () => {
         return a * b
     }
     function divide(a, b) {
-        if(b === 0){
+        if (b === 0) {
             return "ERROR"
         }
         return a / b
@@ -107,7 +109,10 @@ document.addEventListener("DOMContentLoaded", () => {
             default:
                 return;
         }
-        if (Number.isInteger(result)) {
+        if(result == "ERROR"){
+            currentInput = result
+        }
+        else if (Number.isInteger(result)) {
             currentInput = result.toString();
         } else {
             currentInput = parseFloat(result.toFixed(15)).toString();
