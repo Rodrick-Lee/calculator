@@ -29,15 +29,10 @@ document.addEventListener("DOMContentLoaded", () => {
                 updateDisplay();
 
             } else if (["+", "-", "/", "*"].includes(value)) {
-                if (currentInput === "" && previousInput === "") return
+                if (previousInput === "" && currentInput === "") return
 
-                if (operation !== null && !resetDisplay) {
-                    operation = value
-                    return
-                }
-                if (previousInput !== "" && !resetDisplay) {
+                if (previousInput !== "" && currentInput !== "" && operation !== null && !resetDisplay) {
                     operate()
-                    // operation = value
                 }
                 previousInput = currentInput
                 operation = value
